@@ -1,1 +1,3 @@
 # ADS1-SEM
+
+Aqui estão as atividades práticas desenvolvidas em sala, ao longo do 1º semestre do curso :)
