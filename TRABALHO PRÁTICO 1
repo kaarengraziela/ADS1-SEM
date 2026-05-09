@@ -1,0 +1,643 @@
+1. Suponha que a ONG ReflorestAção recebeu como doação um montão de mudas de
+árvores para plantio e recuperação da mata ciliar do Rio Capivari e os seus voluntários
+têm capacidade de plantar uma determinada quantidade de mudas por mês. Construa
+um programa em linguagem C que auxilie a ONG a prever quantos meses serão
+necessários para plantar todas as mudas recebidas como doação. Deverão ser lidos do
+teclado a quantidade de mudas doadas e a quantidade de mudas mensais que podem
+ser plantadas para, em seguida, imprimir a quantidade de meses que a ação de plantio
+vai demorar.
+
+#include <stdio.h>
+int main ()
+{
+    //declaracao de variaveis
+    int mudasDoadas, mudasMensais, mesesPlantio;
+
+    //entrada de dados
+    printf("\nDigite a quantidade de mudas recebidas:");
+    scanf("%i", &mudasDoadas);
+    printf("\nDigite a quantidade de mudas que serao plantadas por mes:");
+    scanf("%i", &mudasMensais);
+
+    //processamento
+    mesesPlantio = mudasDoadas / mudasMensais;
+
+    //saida de dados
+    printf("\nA acao de plantio ira demorar %i meses", mesesPlantio);
+
+    return 1;
+}
+_________________________
+2. Construa um programa em linguagem C que leia o peso de uma carga e a distância
+a ser percorrida por um caminhoneiro para, em seguida, calcular e imprimir na tela o
+preço a ser pago pelo frete, levando em consideração que o dono do caminhão cobra R$
+2,25 por quilo de produto carregado mais R$ 3,34 por quilômetro rodado.
+
+#include <stdio.h>
+int main ()
+{
+    //declaracao
+    float pesoCarga, distanciaPercorrida, valorFrete;
+    float valorKg = 2.25;
+    float valorKm = 3.34;
+
+    //entrada
+    printf("\nDigite o peso da carga:");
+    scanf("%f", &pesoCarga);
+    printf("\nDigite a distancia percorrida:");
+    scanf("%f", &distanciaPercorrida);
+
+    //processamento
+    valorFrete = (valorKg*pesoCarga)+(valorKm*distanciaPercorrida);
+
+    //saida de dados
+    printf("\nO valor a ser pago pelo frete sera %.2f\n", valorFrete);
+
+    return 1;
+
+
+}
+________________________
+3. Suponha que você foi encarregado de construir um programa em linguagem C que
+simule o funcionamento do computador de bordo de um veículo que deverá, a partir
+da distância percorrida e da quantidade consumida de litros de combustível desde o
+último abastecimento, exibir na tela o consumo médio (Km/L) e a autonomia restante
+do veículo (em Km), assumindo que no último abastecimento foram colocados 50 litros
+de combustível.
+
+#include <stdio.h>
+int main()
+{
+    //declaracao de variaveis
+    float distanciaPercorrida, quantidadeLitro;
+    float consumoMedio, autonomia;
+
+    //entrada
+    printf("\nDigite a distancia percorrida em km:");
+    scanf("%f", &distanciaPercorrida);
+    printf("\nDigite a quantidade consumida em litros de combustivel por km:");
+    scanf("%f", &quantidadeLitro);
+
+    //processamento
+    consumoMedio = distanciaPercorrida / quantidadeLitro;
+    autonomia = 50 - consumoMedio;
+
+    //saida
+    printf("\nConsumo medio de %.2f", consumoMedio);
+    printf("\nAutonomia restante de %.2f litros", autonomia);
+
+    return 1;
+}
+____________________
+4. Suponha uma pastelaria que faz pastéis normais (consumindo 35 gramas de farinha
+de trigo cada um) e pastéis Matafome (que consomem, cada um, 80 gramas de farinha
+de trigo). Construa um programa em linguagem C que auxilie no planejamento da
+utilização diária de farinha de trigo pela pastelaria. O programa deverá ler do teclado a
+quantidade de farinha de trigo disponível no estoque (em quilos) e a quantidade de
+pastéis normais e de pastéis Matafome já vendidos no dia. Depois o programa deverá
+calcular e imprimir na tela a quantidade restante de farinha de trigo (em quilos), assim
+como a quantidade pastéis Matafome que ainda podem ser produzidos com esta
+quantidade restante.
+
+#include <stdio.h>
+int main()
+{
+    //declaracao de variaveis
+    float estoqueFarinha, pastelNormal, pastelMatafome;
+    float restanteFarinhaKg;
+    int restanteMatafome;
+    float pastelp = 0.035;
+    float pastelg = 0.080;
+
+    //entrada
+    printf("\nQuantidade de farinha disponivel no estoque: ");
+    scanf("%f", &estoqueFarinha);
+    printf("\nQuantidade de pastel normal produzido no dia: ");
+    scanf("%f", &pastelNormal);
+    printf("\nQuantidade de pastel Matafoma produzido no dia: ");
+    scanf("%f", &pastelMatafome);
+
+    //processamento
+    restanteFarinhaKg = estoqueFarinha - (pastelg + pastelp);
+    restanteMatafome = restanteFarinhaKg / pastelg;
+
+    //saida
+    printf("\nEsta sobrando %.2f de farinha no estoque", restanteFarinhaKg);
+    printf("\nPodera ser produzido %i de pastel Matafome\n", restanteMatafome);
+
+    return 1;
+}
+________________________
+5. Construa um programa em linguagem C que simule o funcionamento de uma
+máquina de venda de bebidas. Suponha que a opção 1 refere-se à venda de
+Refrigerante em Lata, que custa R$ 3,00 cada um. A opção 2 refere-se à venda de Suco
+Natural, que custa R$ 2,50 cada um. O programa deverá ler do teclado um valor int
+(que equivale à opção de bebida) e um valor float (que equivale ao valor pago pelo
+comprador). Se o valor inteiro for igual a 1, deverá imprimir na tela a mensagem
+“Refrigerante”, assim como calcular e imprimir o valor do troco (valor pago – R$ 3,00).
+Se o valor for igual a 2, deverá imprimir na tela a mensagem “Suco”, assim como
+calcular e imprimir o valor do troco (valor pago – R$ 2,50). Se for diferente de 1 e 2,
+imprimir a mensagem “Valor Inválido” na tela. Para ambas as opções, caso o valor
+pago seja inferior ao valor da bebida selecionada, o programa deverá imprimir a
+mensagem “Dinheiro insuficiente”
+
+#include <stdio.h>
+int main ()
+{
+    //entrada
+    int bebida;
+    float troco, dinheiro;
+    float refrigerante = 3.00;
+    float suco = 2.50;
+
+    //entrada de dados
+    printf("\nInsira seu dinheiro na maquina: R$");
+    scanf("%f", &dinheiro);
+
+    printf("\n 1 - Refrigerante em Lata \n 2 - Suco natural\n \nSelecione sua opcao de bebida: ");
+    scanf("%i", &bebida);
+
+    //processamento e saida0
+    switch (bebida)
+    {
+        case 1: printf("\nRefrigerante em Lata");
+            if(dinheiro<refrigerante)
+            {
+            printf("\nDinheiro insuficiente\n");
+            }
+            else
+            {
+            troco = dinheiro - refrigerante;
+            printf("\nValor pago: R$3.00 \nSeu troco eh R$%.2f \n", troco);
+            } break;
+        case 2: printf("\nSuco natural");
+            if(dinheiro<suco)
+            {
+            printf("\nDinheiro insuficiente\n");
+            }
+            else
+            {
+            troco = dinheiro - suco;
+            printf("\nValor pago: R$2.50 \nSeu troco eh R$%.2f \n", troco);
+            }
+            break;
+        default: printf("\nOpcao Invalida\n");
+    }
+
+    return 1;
+}
+____________________________________
+6. As Lojas Pernancubanas vendem produtos à vista ou a prazo. Se a venda é à vista o
+cliente recebe 10% de desconto no valor total da compra. Caso seja uma venda a prazo,
+o cliente não tem desconto mas pode escolher pagar em até 6 prestações. Construa um
+programa em linguagem C que leia do teclado o valor total da compra (float), assim
+como o tipo de venda escolhida pelo cliente (char), onde ‘V’ significa venda à vista e
+‘P’ significa venda a prazo. Se o cliente escolher a venda à vista o programa deverá
+exibir na tela o valor a ser pago, já com o desconto de 10% sobre o valor total. Se o
+cliente escolher venda a prazo, o programa deverá ler do teclado o número de
+prestações escolhidas pelo cliente (int) e exibir na tela o valor de cada prestação. Se o
+número de prestações escolhidas pelo cliente for superior a 6, o programa deverá exibir
+a mensagem “Número incorreto de prestações”. Caso o cliente não escolha ‘V’
+ou ‘P’ como tipo da venda, o programa deverá exibir na tela a mensagem “opção
+inválida”.
+
+#include <stdio.h>
+int main()
+{
+    //declaracao
+    char tipoVenda;
+    float totalCompra, valorComDesconto, valorPrestacoes;
+    int prestacoes;
+
+    //entrada
+    printf("\nValor total da compra:R$");
+    scanf("%f", &totalCompra);
+    printf("\n V - Ah vista \n P - Ah prazo\n \nQual sera a forma de pagamento: ");
+    scanf(" %c", &tipoVenda);
+
+    //processamnto e saida
+    switch (tipoVenda)
+    {
+        case 'v':
+        case 'V': printf("\nPagamento ah vista");
+            valorComDesconto = totalCompra * 0.90;
+            printf("\nValor com desconto: R$%.2f\n", valorComDesconto);
+            break;
+
+        case 'p':
+        case 'P': printf("\nPagamento ah prazo");
+            printf("\nQuantas prestacoes: ");
+            scanf("%i", &prestacoes);
+
+            if (prestacoes <= 0)
+            {
+            printf("\nNumero incorreto de prestacoes!\n");
+            }
+            else
+
+            if (prestacoes <= 6)
+            {
+                valorPrestacoes = totalCompra / prestacoes;
+                printf("\nO valor de cada prestacao eh de R$%.2f\n", valorPrestacoes);
+            }
+            else
+            {
+            printf("\nNumero incorreto de prestacoes!\n");
+            }
+            break;
+
+        default: printf("\nOpcao Invalida\n");
+
+    }
+
+return 1;
+}
+____________________________________
+7. No Lava-Rápido “War Cash” lavam-se motocicletas, carros e caminhonetes. A
+lavagem pode ser de dois tipos: simples e completa. Os preços para lavagem de
+motocicleta são R$ 5,00 (simples) e R$ 10,00 (completa). Para lavagem de carro os
+preços são R$ 15,00 (simples) e R$ 25,00 (completa); de caminhonete os preços são R$
+35,00 (simples) e R$ 50,00 (completa). Para todos os tipos de lavagem o cliente pode
+escolher utilizar o serviço “leva e traz”, o que acresce R$ 20,00 no custo final da
+lavagem. Construa um programa em linguagem C que auxilie os funcionários do “Car
+Wash” a calcularem o preço final de um serviço de lavagem. Deverá ser lido do teclado
+o tipo de veículo (int), onde 1 significa motocicleta, 2 significa carro e 3 significa
+caminhonete. A seguir o usuário também deverá informar o tipo de lavagem (char),
+onde ‘C’ é lavagem completa e qualquer outra letra é lavagem simples. Finalmente o
+usuário deverá informar se vai utilizar o serviço “leva e traz” (char), onde ‘S’ significa
+que vai utilizar e qualquer outra letra significa que não vai. Ao final o programa deverá
+informar o preço final da lavagem.
+
+#include <stdio.h>
+int main()
+{
+    //declaracao
+    int veiculo;
+    char tipoLavagem, levaTraz;
+    float totalLavagem;
+
+    //entrada
+    printf("\nBem-vindo ao War Cash\n \n1 - Moto \n2 - Carro \n3 - Caminhonete \nQual tipo de veiculo? ");
+    scanf("%i", &veiculo);
+
+    //processamento e saida
+    switch (veiculo)
+    {
+        case 1: //Moto
+            {
+            printf("\nC - Completa \nQualquer tecla - Simples \nEscolha o tipo de lavagem: ");
+            scanf(" %c", &tipoLavagem);
+            switch (tipoLavagem)
+                {
+                case 'c':
+                case 'C': printf("Lavagem completa\n");
+                    totalLavagem = 10; break;
+
+                default: printf("Lavagem simples\n");
+                    totalLavagem = 5; break;
+                }
+
+            printf("\nS - Inclui leva e traz \nQualquer tecla - Nao inclui leva e traz \nEscolha uma opcao: ");
+            scanf(" %c", &levaTraz);
+            switch (levaTraz)
+                {
+                case 'S':
+                case 's': printf("Inclui leva e traz\n");
+                    totalLavagem = totalLavagem + 20; break;
+                default: printf("Nao inclui leva e traz");
+                    break;
+                }
+            printf("\nTotal do servico: R$%.2f\n", totalLavagem);
+            }
+            break;
+        case 2: //carro
+            {
+            printf("\nC - Completa \nQualquer tecla - Simples \nEscolha o tipo de lavagem: ");
+            scanf(" %c", &tipoLavagem);
+            switch (tipoLavagem)
+                {
+                case 'c':
+                case 'C': printf("Lavagem completa\n");
+                    totalLavagem = 25; break;
+
+                default: printf("Lavagem simples\n");
+                    totalLavagem = 15; break;
+                }
+
+            printf("\nS - Inclui leva e traz \nQualquer tecla - Nao inclui leva e traz \nEscolha uma opcao: ");
+            scanf(" %c", &levaTraz);
+            switch (levaTraz)
+                {
+                case 'S':
+                case 's': printf("Inclui leva e traz\n");
+                    totalLavagem = totalLavagem + 20; break;
+                default: printf("Nao inclui leva e traz");
+                    break;
+                }
+            printf("\nTotal do servico: R$%.2f\n", totalLavagem);
+            }
+            break;
+        case 3: //caminhonete
+            {
+            printf("\nC - Completa \nQualquer tecla - Simples \nEscolha o tipo de lavagem: ");
+            scanf(" %c", &tipoLavagem);
+            switch (tipoLavagem)
+                {
+                case 'c':
+                case 'C': printf("Lavagem completa\n");
+                    totalLavagem = 50; break;
+
+                default: printf("Lavagem simples\n");
+                    totalLavagem = 35; break;
+                }
+
+            printf("\nS - Inclui leva e traz \nQualquer tecla - Nao inclui leva e traz \nEscolha uma opcao: ");
+            scanf(" %c", &levaTraz);
+            switch (levaTraz)
+                {
+                case 'S':
+                case 's': printf("Inclui leva e traz\n");
+                    totalLavagem = totalLavagem + 20; break;
+                default: printf("Nao inclui leva e traz");
+                    break;
+                }
+            printf("\nTotal do servico: R$%.2f\n", totalLavagem);
+            }
+            break;
+    }
+return 1;
+}
+____________________________________
+8. A barbearia “Sweeney Todd” presta os seguintes serviços com os correspondentes
+valores: Corte de Cabelo (R$ 30,00), Barba (R$ 40,00), Manicure (R$ 15,00) e Pedicuro
+(R$ 50,00). Um mesmo cliente pode solicitar um serviço (somente Cabelo, somente
+Barba etc.) ou uma combinação desses serviços (Cabelo e Barba, Barba, Pedicure e
+Manicure, Cabelo e Manicure etc.). No caso do cliente solicitar todos os quatro serviços,
+a barbearia tem uma promoção que desconta do preço final o custo da Manicure. Além
+disso, a barbearia aceita cupons de desconto que podem abater 5%, 10% ou 15% do
+preço final, não importando quantos serviços tenham sido prestados. Construa um
+programa em linguagem C que auxilie os funcionários da “Sweeney Todd” a
+calcularem o preço final dos serviços prestados a um cliente. Deverão ser lidos do
+teclado o valor de quatro variáveis do tipo int: cabelo, barba, manicure e
+pedicuro. Se o usuário digitar 0 para qualquer uma destas variáveis, significa que
+não deseja a prestação do serviço correspondente. Qualquer valor diferente de 0 indica
+que o usuário deseja a prestação do serviço correspondente. Além disso o programa
+deverá ler do teclado o valor do cupom de desconto (int), que pode ser 5, 10 ou 15. Ao
+final deverá ser impresso o preço final a ser cobrado do cliente. Observação: Se o valor
+do cupom de desconto for diferente de 5, 10 ou 15, a mensagem “desconto inválido”
+deverá ser impressa na tela e nenhum desconto deverá ser dado ao preço final cobrado
+do cliente.
+
+#include <stdio.h>
+int main()
+{
+    //declaracao de variaveis
+    int cabelo, barba, manicure, pedicure;
+    int cupomDesconto;
+    float valorTotal = 0;
+
+    //entrada
+    printf("\nSelecione os servicos que deseja, apertando: \n0 (zero) para nao \nQualquer valor para sim\n");
+    printf("\nCabelo: ");
+    scanf("%i", &cabelo);
+    printf("\nBarba: ");
+    scanf("%i", &barba);
+    printf("\nManicure: ");
+    scanf("%i", &manicure);
+    printf("\nPedicure: ");
+    scanf("%i", &pedicure);
+
+    printf("\nEscolha seu cupom de desconto \n5%% - 10%% - 15%%: ");
+    scanf("%i", &cupomDesconto);
+
+    if(cupomDesconto != 5 && cupomDesconto != 10 && cupomDesconto != 15)
+    {
+        printf("\nValor invalido! Digite novamente: ");
+        scanf("%i", &cupomDesconto);
+    }
+
+    //processamento
+    switch (cabelo)
+    {
+        case 0: break;
+        default: valorTotal = 30; break;
+    }
+    switch (barba)
+    {
+        case 0: break;
+        default: valorTotal = valorTotal + 40; break;
+    }
+    switch (manicure)
+    {
+        case 0: break;
+        default: valorTotal = valorTotal + 15; break;
+    }
+    switch (pedicure)
+    {
+        case 0: break;
+        default: valorTotal = valorTotal + 50; break;
+    }
+
+    if(cabelo != 0 && barba != 0 && manicure != 0 && pedicure != 0)
+       {
+        valorTotal = valorTotal - 15;
+        valorTotal = valorTotal - (valorTotal * cupomDesconto/100);
+        printf("\nValor total: R$%.2f\n", valorTotal);
+       }
+
+    else
+        {
+        valorTotal = valorTotal - (valorTotal * cupomDesconto/100);
+        printf("\nValor total: R$%.2f\n", valorTotal);
+        }
+
+
+return 1;
+}
+____________________________________
+9. O programa “Meu Cafofo Minha Vida” distribui casas próprias para famílias
+cadastradas. A prefeitura de Capiravi precisa pontuar e classificar estas famílias e,
+assim, determinar o tempo que vai demorar para cada uma delas conseguir a casa
+própria. As seguintes regras deve ser utilizada para estabelecer a pontuação:
+• Número de pessoas na família: 1 ponto por pessoa.
+• Número de pessoas em idade escolar: 2 pontos por pessoa.
+• A família é chefiada por mulher (10 pontos) ou chefiada por homem (5
+pontos).
+• Renda per capita: menor que meio salário mínimo (10 pontos), entre meio
+salário mínimo e um salário mínimo (5 pontos), acima de um salário mínimo (3
+pontos).
+• 5 pontos caso exista algum membro da família com doença grave incurável.
+A pontuação determina o ano em que a família poderá receber sua casa:
+• 25 pontos ou mais recebe a casa em 2026;
+• Entre 15 e 24 pontos recebe a casa em 2027;
+• Entre 10 e 14 pontos recebe a casa em 2028;
+• Abaixo de 10 pontos recebe a casa em 2029.
+Construa um programa em linguagem C que leia do teclado os dados necessários,
+calcule e exiba a pontuação e, finalmente, imprima na tela o ano que uma determinada
+família vai receber a casa própria.
+
+
+#include <stdio.h>
+int main()
+{
+    //declaracao
+    int pessoas, idadeEscolar, chefiada, doencas;
+    int pontuacao = 0;
+    int pontuacaoT = 0;
+    float rendaPerCapita;
+
+    //entrada de dados
+    printf("\nDigite o numero de pessoas da familia: ");
+    scanf("%i", &pessoas);
+    printf("\nDigite o numero de pessoas em idade escolar: ");
+    scanf("%i", &idadeEscolar);
+
+        //processamento e saida
+    printf("\nA familia eh \n 1- chefiada por mulher \n 2 - chefiada por homem \nEscolha uma das opcoes acima: ");
+    scanf("%i", &chefiada);
+
+    switch (chefiada)
+    {
+        case 1: pontuacao = pontuacao + 10; break;
+        case 2: pontuacao = pontuacao + 5; break;
+        default: printf("\nOpcao Invalida\n"); break;
+    }
+
+    printf("\nQual o renda per capita da familia? R$");
+    scanf("%f", &rendaPerCapita);
+
+        if (rendaPerCapita < 800)
+            {pontuacao += 10;}
+        else if (rendaPerCapita<=1600)
+            {pontuacao += 5;}
+        else
+            {pontuacao += 3;}
+
+    printf("\nExiste algum membro da familia com doenca grave incuravel? \n 1 - SIM \n 2 - NAO \nEscolha uma das opcoes acima: ");
+    scanf("%i", &doencas);
+
+        if (doencas == 1)
+            pontuacao += 5;
+
+    pontuacaoT = pontuacao + pessoas + (idadeEscolar*2);
+
+        if (pontuacaoT>=25)
+        {printf("\nSua pontuacao eh %i. Voce ira receber a casa em 2026\n", pontuacaoT);}
+        else if (pontuacaoT>=15)
+        {printf("\nSua pontuacao eh %i. Voce ira receber a casa em 2027\n", pontuacaoT);}
+        else if (pontuacaoT>=10)
+        {printf("\nSua pontuacao eh %i. Voce ira receber a casa em 2028\n", pontuacaoT);}
+        else
+        {printf("\nSua pontuacao eh %i. Voce ira receber a casa em 2029\n", pontuacaoT);}
+
+    return 1;
+}
+_________________________
+10. A Utaí Seguros vende apólices de seguros para veículos e concede descontos
+progressivos no valor com base em uma série de regras de negócio:
+• Condutor Principal do sexo feminino: mais 5% de desconto.
+• Veículo possui local seguro para pernoite: mais 2% de desconto.
+• Veículo com ano de fabricação superior a 2019: mais 2% de desconto.
+• Veículo possui dispositivo anti-furto: mais 1% de desconto.
+• Número de pontos na carteira de habilitação (CNH) do condutor principal:
+◦ 0 (zero) pontos: mais 5% de desconto.
+◦ Até 7 pontos: mais 4% de desconto.
+◦ Até 12 pontos: mais 3% de desconto.
+◦ Até 17 pontos: mais 2% de desconto
+◦ Acima de 17 pontos: nenhum desconto.
+Construa um programa em linguagem C que leia do teclado os dados necessários,
+calcule e exiba a porcentagem de desconto. Em seguida o programa deverá ler o valor
+bruto de uma apólice (sem desconto) e imprimir o valor líquido após aplicada a
+porcentagem de desconto. 
+
+#include <stdio.h>
+int main()
+{
+    //declaracao de variaveis
+    int sexo, pernoite, fabricacao, antiFurto, pontos, pontosHabilitacao;
+    int desconto = 0;
+    float valorApolice, valorComDesconto;
+    
+    //entrada de dados
+    printf("\nO principal condutor do veiculo eh: \n1 - sexo feminino \n2 - sexo masculino \nEscolha uma das opcoes acima: ");
+    scanf("%i", &sexo);
+        if (sexo==1)
+        {
+            desconto += 5;
+        }
+        else if (sexo!=2)
+        {
+            printf("\nOpcao invalida! Tente novamente: ");
+            scanf("%i", &sexo);
+        }
+    
+    printf("\nO veiculo possui local segura para pernoite: \n1 - SIM \n2 - NAO \nEscolha uma das opçoes acima: ");
+    scanf("%i", &pernoite);
+        if (pernoite==1)
+        {
+            desconto += 2;
+        }
+        else if (pernoite!=2)
+        {
+            printf("\nOpcao invalida! Tente novamente: ");
+            scanf("%i", &pernoite);
+        }
+    
+    printf("\nO veiculo possui o ano de fabricacao superior a 2019: \n1 - SIM \n2 - NAO \nEscolha uma das opçoes acima: ");
+    scanf("%i", &fabricacao); 
+       if (fabricacao==1)
+        {
+            desconto += 2;
+        }
+        else if (fabricacao!=2)
+        {
+            printf("\nOpcao invalida! Tente novamente: ");
+            scanf("%i", &fabricacao);
+        }
+        
+    printf("\nO veiculo possui dispositivo anti-furto: \n1 - SIM \n2 - NAO \nEscolha uma das opçoes acima: ");
+    scanf("%i", &antiFurto);
+        if (antiFurto==1)
+        {
+          desconto += 1;
+        }
+       else if (antiFurto!=2)
+        {
+        printf("\nOpcao invalida! Tente novamente: ");
+        scanf("%i", &antiFurto);
+        }
+        
+    printf("\nQuantos pontos o condutor principal tem na carteira de habilitacao?");
+    scanf("%i", &pontosHabilitacao);
+        if (pontosHabilitacao==0)
+            {
+                desconto += 5;
+            }
+        else if (pontosHabilitacao <= 7)
+            {
+                desconto += 4;
+            }
+        else if (pontosHabilitacao <= 12)
+            {
+                desconto += 3;
+            }
+        else if (pontosHabilitacao <= 17)
+            {
+                desconto += 2;
+            }
+        else
+            {
+                desconto += 0;
+            }
+    printf("\nVoce tera %i%% de desconto em suas apolices.", desconto);
+    
+    printf("\nQual do valor bruto da apolice? R$");
+    scanf("%f", &valorApolice);
+    
+    valorComDesconto = valorApolice - (valorApolice*desconto/100);
+    
+    printf("\nCom desconto, o valor da sua apolice sera de R$%.2f", valorComDesconto);
+
+
+    return 1;    
+}
